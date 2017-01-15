@@ -1,6 +1,6 @@
 # Site settings
 title: cobbr.github.io
-email: none yet :(
+# email: none yet :(
 description: > # this means to ignore newlines until "baseurl:"
   cobbr.github.io is the personal blog of Ryan Cobb
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -10,7 +10,6 @@ github_username:  cobbr
 
 # Build settings
 markdown: kramdown
-theme: minima
 gems:
   - jekyll-feed
 exclude:
