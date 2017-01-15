@@ -1,10 +1,10 @@
 # Site settings
-title: cobbr.github.io
-email: none yet :(
+title: cobbr.io
+# email: none
 description: > # this means to ignore newlines until "baseurl:"
-  cobbr.github.io is the personal blog of Ryan Cobb
+  cobbr.io is the personal blog of Ryan Cobb
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cobbr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://cobbr.io"
 twitter_username: cobbr_io
 github_username:  cobbr
 
