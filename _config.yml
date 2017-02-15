@@ -1,12 +1,12 @@
 # Site settings
 title: cobbr.io
 # email: none
-description: > # this means to ignore newlines until "baseurl:"
-  cobbr.io is the personal blog of Ryan Cobb
+# description: Ryan Cobb
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://cobbr.io"
 twitter_username: cobbr_io
 github_username:  cobbr
+permalink: /:title.html
 
 # Build settings
 markdown: kramdown
