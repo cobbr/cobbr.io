@@ -106,6 +106,16 @@ You can see the Invoke-Obfuscation **token-level** obfuscation persisted to the 
 
 I should also emphasize the fact that all of this cool ScriptBlock logging and AMSI stuff only works on PowerShell 5.0. So if you are anything like me, you are lazy and all of the above looks like an awful lot of work. In that case, just do `powershell -version 2` and be done with it!
 
+## Mitigation
+
+My intention in releasing this tool integration is to demonstrate to defenders the obfuscation tactics that are **already being used** in the wild. This will provide pentesters and red teamers the ability to provide more value to their clients by using already available obfuscation techniques when establishing their C2 channel. The end goal here is to **improve** security.
+
+Mitigation of these obfuscation techniques can be tricky. As previously mentioned, using AV equipped with AMSI scanning is already a step in the right direction, as several layers of obfuscation are stripped off prior to scanning. However, there is still the **token-level** obfuscation to contend with, which is what makes Invoke-Obfuscation and ObfuscatedEmpire effective. A technique that has been suggested by Lee Holmes (of Microsoft) and others is to search for signs of obfuscation itself. For example, a token-level obfuscation trick utilized extensively by Invoke-Obfuscation is to insert apostrophes into function names and other tokens. `Invoke-Empire` might become ```iN`v`OK`e-`eM`p`IR`e```. Should we really expect that 50% of a script consist of apostrophe characters? This is an obvious sign of obfuscation, which AV vendors should begin to implement detection for. Holmes wrote about these types of detection methods as early as November 2015 [here](https://www.leeholmes.com/blog/2015/11/13/detecting-obfuscated-powershell/) and [here](https://www.leeholmes.com/blog/2016/10/22/more-detecting-obfuscated-powershell/) if you would like to read more.
+
+While I don't know of *any* AV vendors that actually implement these obfuscation detection methods at the time of writing (if you know of any, please let me know), defenders should begin to apply pressure on their vendors to implement these techniques.
+
+I plan to go into further depth of obfuscation detection methods and their effectiveness in another post, after further research.
+
 ## Conclusion
 
 The AV vs. malware cat-and-mouse game has officially moved from disk to memory. Obfuscation poses a major problem for AV vendors that needs to be addressed sooner rather than later. ObfuscatedEmpire makes it easy for attackers to automatically utilize obfuscation techniques without needing to think too hard about it.
@@ -121,12 +131,9 @@ Grab the ObfuscatedEmpire code from [the github page](https://github.com/cobbr/O
 * Everyone who has worked on the [Empire](https://github.com/EmpireProject/Empire) project.
 * The Microsoft PowerShell team for the awesome PowerShell logging capabilities, as well as making PowerShell cross-platform. ObfuscatedEmpire wouldn't work without it.
 
+
 ## Additional Resources
 More on PowerShell logging:
 * [https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/)
 * [https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html](https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html)
 * [https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf](https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf)
-
-### Obligatory "don't do anything evil with this" warning
-
-Don't do anything evil with this. Only use ObfuscatedEmpire on systems/networks you have permission to. Illegal use is not permitted.
