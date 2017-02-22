@@ -112,7 +112,7 @@ The AV vs. malware cat-and-mouse game has officially moved from disk to memory. 
 
 Long term, I'm hoping this obfuscation could be merged into Empire itself, but there could be a few obstacles to that since it requires using server-side Powershell on Linux, which is still in **alpha** state (and technically unsupported on Kali Linux), and makes substantial design changes to Empire module templates. I'll try to maintain ObfuscatedEmpire with the latest Empire commits until/if a merge is possible.
 
-I would love to hear what people think about all of the stuff mentioned in this post. Feel free to drop a comment on this post or hit me up on twitter [@cobbr_io](https://twitter.com/cobbr_io) to communicate directly.
+I would love to hear what people think about all of the stuff mentioned in this post. Feel free to leave a comment on this post or message me on twitter [@cobbr_io](https://twitter.com/cobbr_io) to communicate directly.
 
 Grab the ObfuscatedEmpire code from [the github page](https://github.com/cobbr/ObfuscatedEmpire).
 
