@@ -1,27 +1,27 @@
 ---
 layout: post
-title: "ObfuscatedEmpire - Use an obfuscated, in-memory Powershell C2 channel to evade AV signatures"
+title: "ObfuscatedEmpire - Use an obfuscated, in-memory PowerShell C2 channel to evade AV signatures"
 date: 2017-2-19 12:00:00 -0600
-tags: ObfuscatedEmpire Invoke-Obfuscation Empire AMSI Powershell
+tags: ObfuscatedEmpire Invoke-Obfuscation Empire AMSI PowerShell
 ---
 [ObfuscatedEmpire](https://github.com/) is an integration of two fantastic projects, [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) and [Empire](https://github.com/EmpireProject/Empire). If you aren't already familiar with those projects, you really should go check them out first. But here's a quick summary for those who are unfamiliar:
-* Empire is a Powershell post-exploitation agent. It's a powerful tool for attackers as it allows for a C2 channel to be run completely in-memory, without any malicious code touching disk, rendering traditional AV techniques ineffective.
-* Invoke-Obfuscation is a Powershell script obfuscator. As the use of in-memory Powershell malware has grown, implementation of in-memory AV scanning of Powershell scripts has begun. Invoke-Obfuscation challenges all assumptions these in-memory Powershell AV signatures have been making.
+* Empire is a PowerShell post-exploitation agent. It's a powerful tool for attackers as it allows for a C2 channel to be run completely in-memory, without any malicious code touching disk, rendering traditional AV techniques ineffective.
+* Invoke-Obfuscation is a PowerShell script obfuscator. As the use of in-memory PowerShell malware has grown, implementation of in-memory AV scanning of PowerShell scripts has begun. Invoke-Obfuscation challenges all assumptions these in-memory PowerShell AV signatures have been making.
 
 ## Motivations
 
-ObfuscatedEmpire is a fork of Empire, with Invoke-Obfuscation baked directly into it's functionality. While nothing in ObfuscatedEmpire is "new", it does allow for something new: executing an **obfuscated** Powershell C2 channel totally in-memory.
+ObfuscatedEmpire is a fork of Empire, with Invoke-Obfuscation baked directly into it's functionality. While nothing in ObfuscatedEmpire is "new", it does allow for something new: executing an **obfuscated** PowerShell C2 channel totally in-memory.
 
-While Empire is great for executing in-memory Powershell, it does little in the way of obfuscation. As we will see in a moment, this can leave behind some incriminating evidence in Window's EventLogs, and execution can even be blocked in-memory.
+While Empire is great for executing in-memory PowerShell, it does little in the way of obfuscation. As we will see in a moment, this can leave behind some incriminating evidence in Window's EventLogs, and execution can even be blocked in-memory.
 
-It seems Microsoft's answer to the new rage of using in-memory Powershell to evade AV, is **AMSI** (or Anti-Malware Scan Interface). AMSI is a simple API that allows *any* application to provide information to 3rd-party AV vendors. AV vendors develop signatures for that application, and block execution of anything they deem to be malicious. Microsoft utilizes AMSI for Powershell, indeed at the time of writing, I believe Powershell is the *only* app that utilizes AMSI.
+It seems Microsoft's answer to the new rage of using in-memory PowerShell to evade AV, is **AMSI** (or Anti-Malware Scan Interface). AMSI is a simple API that allows applications to provide information to 3rd-party AV vendors. AV vendors develop signatures for these applications, and block execution of anything they deem to be malicious.
 
-Ultimately, AMSI can only be as effective as the signatures developed by these 3rd-party AV vendors. In the past, AV vendors have struggled to do exactly that, so I don't think it should surprise anyone that they haven't yet mastered AMSI signatures. And no tool highlights that fact more than Invoke-Obfuscation. Invoke-Obfuscation performs various types of obfuscation on Powershell scripts that fools these signatures. The exact obfuscation techniques used are outside the scope of this post, mainly because I don't really understand most of them. But I highly recommend watching one of Daniel Bohannon's [presentations](https://www.youtube.com/watch?v=6J8pw_bM-i4) on the subject.
+Ultimately, AMSI can only be as effective as the signatures developed by these 3rd-party AV vendors. In the past, AV vendors have struggled to do exactly that, so I don't think it should surprise anyone that they haven't yet mastered AMSI signatures. And no tool highlights that fact more than Invoke-Obfuscation. Invoke-Obfuscation performs various types of obfuscation on PowerShell scripts that fools these signatures. The exact obfuscation techniques used are outside the scope of this post, mainly because I don't really understand most of them. But I highly recommend watching one of Daniel Bohannon's [presentations](https://www.youtube.com/watch?v=6J8pw_bM-i4) on the subject.
 
 From an attacker's perspective, Invoke-Obfuscation is great, but to properly use an obfuscated script you have to take a few steps:
-1. Create and obfuscate some form of Powershell [remote-download cradle](https://gist.github.com/HarmJ0y/bb48307ffa663256e239).
-2. Create an obfuscated Powershell one-liner that executes that remote download cradle.
-3. Prepare and host an obfuscated version of the Powershell script you actually want to run. The remote download cradle will grab and execute this script.
+1. Create and obfuscate some form of PowerShell [remote-download cradle](https://gist.github.com/HarmJ0y/bb48307ffa663256e239).
+2. Create an obfuscated PowerShell one-liner that executes that remote download cradle.
+3. Prepare and host an obfuscated version of the PowerShell script you actually want to run. The remote download cradle will grab and execute this script.
 
 This whole process has to be repeated for every script you want to run. This is where ObfuscatedEmpire comes in. By flipping a global 'obfuscate' switch on, ObfuscatedEmpire will perform server-side obfuscation of all stages of the C2 process. Let's take a look at some of the functionality.
 
@@ -33,7 +33,7 @@ The first thing you'll want to take a look at is ObfuscatedEmpire's launcher men
 
 ![Generated obfuscated launcher]({{site.baseurl}}/assets/images/obfuscated-launcher-generated.png)
 
-Now you have an obfuscated Empire launcher. Before you go running that, you will also want to set the **global** `obfuscate` flag to `True`. And optionally set the **global** `obfuscate_command`. These control obfuscation for basically everything that is not a launcher. It obfuscates the entire agent-negotiation process as well as Empire's Powershell modules. Now, when you run that launcher, establish an agent, and execute a module, a dynamically-generated, obfuscated version of the module will be created and executed by the agent. Obfuscation can be a time-consuming process for lengthy scripts, so a global `preobfuscate` command is supplied to generate pre-obfuscated versions of **all** Empire modules. This allows you to obfuscate all of your modules prior to an engagement, and not have to wait on the obfuscation process in the middle of a project. You can also preobfuscate a selected Empire module, though this isn't demonstrated here.
+Now you have an obfuscated Empire launcher. Before you go running that, you will also want to set the **global** `obfuscate` flag to `True`. And optionally set the **global** `obfuscate_command`. These control obfuscation for basically everything that is not a launcher. It obfuscates the entire agent-negotiation process as well as Empire's PowerShell modules. Now, when you run that launcher, establish an agent, and execute a module, a dynamically-generated, obfuscated version of the module will be created and executed by the agent. Obfuscation can be a time-consuming process for lengthy scripts, so a global `preobfuscate` command is supplied to generate pre-obfuscated versions of **all** Empire modules. This allows you to obfuscate all of your modules prior to an engagement, and not have to wait on the obfuscation process in the middle of a project. You can also preobfuscate a selected Empire module, though this isn't demonstrated here.
 
 ![Preobfuscate Example]({{site.baseurl}}/assets/images/preobfuscate.png)
 
@@ -45,25 +45,25 @@ First, let's use no obfuscation options and see how our target system behaves. G
 
 ![Unobfuscated Launcher]({{site.baseurl}}/assets/images/generate-unobfuscated-launcher-agent-started.png)
 
-Let's check out what we can find on our target system. Here we see that the exact Powershell script we ran in-memory was logged and can be seen in EventViewer!
+Let's check out what we can find on our target system. Here we see that the exact PowerShell script we ran in-memory was logged and can be seen in EventViewer!
 
 ![Unobfuscated EventLog]({{site.baseurl}}/assets/images/unobfuscated-empire-eventlog.png)
 
-We'll have to take a quick detour into Powershell logging to understand what is going on here.
+We'll have to take a quick detour into PowerShell logging to understand what is going on here.
 
-### Powershell Logging - A Quick Detour
+### PowerShell Logging - A Quick Detour
 
-Powershell provides powerful logging capabilities of scripts executed on a system. Powershell has three different types of logging mechanisms: Module logging, Transcription, and ScriptBlock logging.
+PowerShell provides powerful logging capabilities of scripts executed on a system. PowerShell has three different types of logging mechanisms: Module logging, Transcription, and ScriptBlock logging.
 
-**Powershell Module logging**  logs an event for each *command* executed in a Powershell script. This can create an enormous amount of logs. FireEye [published a white paper](https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf) that demonstrated that running Invoke-Mimikatz alone generates 1200+ Powershell module logs. Module logging is **not** enabled by default on Windows 10.
+**PowerShell Module logging**  logs an event for each *command* executed in a PowerShell script. This can create an enormous amount of logs. FireEye [published a white paper](https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf) that demonstrated that running Invoke-Mimikatz alone generates 1200+ PowerShell module logs. Module logging is **not** enabled by default on Windows 10.
 
 **Transcription logging** is [described by Lee Holmes](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/) as similar to what you would see if you were watching over someone's shoulder as they were typing the script. You see the script being executed exactly as it would be typed and you see the script's output. While at first this might seem to be exactly what a defender would need, all forms of obfuscation will persist to the transcription logs. A simple base64 encoding of a script makes the transcription logs a lot less useful. Transcription logging is also **not** enabled by default on Windows 10.
 
-**ScriptBlock logging** is probably the most powerful form of logging available for Powershell. It logs Powershell scripts at the ScriptBlock level. A [ScriptBlock](https://msdn.microsoft.com/en-us/powershell/reference/4.0/microsoft.powershell.core/about/about_script_blocks) is "a collection of statements or expressions that can be used as a single unit". Where transcription logging logs scripts as they are **typed**, scriptblock logging logs the scriptblocks as they are **executed**, which makes a huge difference. This means that several layers of obfuscation are stripped off of the scriptblock prior to logging, such as the base64 encoding trick that hid us in transcription logging. Luckily, at least for us attackers, is that Invoke-Obfuscation provides **token-level** obfuscation which persists all the way to the ScriptBlock level. The code seen by AMSI is identical to what is available in the ScriptBlock logs. It is also important to note that ScriptBlock logging and AMSI are **enabled by default** on Windows 10.
+**ScriptBlock logging** is probably the most powerful form of logging available for PowerShell. It logs PowerShell scripts at the ScriptBlock level. A [ScriptBlock](https://msdn.microsoft.com/en-us/powershell/reference/4.0/microsoft.powershell.core/about/about_script_blocks) is "a collection of statements or expressions that can be used as a single unit". Where transcription logging logs scripts as they are **typed**, scriptblock logging logs the scriptblocks as they are **executed**, which makes a huge difference. This means that several layers of obfuscation are stripped off of the scriptblock prior to logging, such as the base64 encoding trick that hid us in transcription logging. Luckily, at least for us attackers, is that Invoke-Obfuscation provides **token-level** obfuscation which persists all the way to the ScriptBlock level. The code seen by AMSI is identical to what is available in the ScriptBlock logs. It is also important to note that ScriptBlock logging and AMSI are **enabled by default** on Windows 10.
 
 ### Back to hacking
 
-Now that we have a better understanding of the Powershell logging capabilities, let's again take a look at the event logs generated by running an un-obfuscated Empire launcher on our target system.
+Now that we have a better understanding of the PowerShell logging capabilities, let's again take a look at the event logs generated by running an un-obfuscated Empire launcher on our target system.
 
 ![Unobfuscated EventLog]({{site.baseurl}}/assets/images/unobfuscated-empire-eventlog.png)
 
@@ -102,27 +102,27 @@ This time we get no notifications from Windows Defender. We have bypassed the AV
 
 ![Obfuscated Mimikatz Eventlog]({{site.baseurl}}/assets/images/obfuscated-mimikatz-eventlog.png)
 
-You can see the Invoke-Obfuscation **token-level** obfuscation persisted to the ScriptBlock logs. While I don't have access to Windows Defender's AV signatures, clearly they do not take the possibility of this token obfuscation into account. What's interesting is that these eventlogs are still being categorized under the `WARNING` label. I'm not sure how common this is to see in eventlogs with normal administrative Powershell functionality as added noise, but it's certainly something to investigate as defenders.
+You can see the Invoke-Obfuscation **token-level** obfuscation persisted to the ScriptBlock logs. While I don't have access to Windows Defender's AV signatures, clearly they do not take the possibility of this token obfuscation into account. What's interesting is that these eventlogs are still being categorized under the `WARNING` label. I'm not sure how common this is to see in eventlogs with normal administrative PowerShell functionality as added noise, but it's certainly something to investigate as defenders.
 
-I should also emphasize the fact that all of this cool ScriptBlock logging and AMSI stuff only works on Powershell 5.0. So if you are anything like me, you are lazy and all of the above looks like an awful lot of work. In that case, just do `powershell -version 2` and be done with it!
+I should also emphasize the fact that all of this cool ScriptBlock logging and AMSI stuff only works on PowerShell 5.0. So if you are anything like me, you are lazy and all of the above looks like an awful lot of work. In that case, just do `powershell -version 2` and be done with it!
 
 ## Conclusion
 
 The AV vs. malware cat-and-mouse game has officially moved from disk to memory. Obfuscation poses a major problem for AV vendors that needs to be addressed sooner rather than later. ObfuscatedEmpire makes it easy for attackers to automatically utilize obfuscation techniques without needing to think too hard about it.
 
-Long term, I'm hoping this obfuscation could be merged into Empire itself, but there could be a few obstacles to that since it requires using server-side Powershell on Linux, which is still in **alpha** state (and technically unsupported on Kali Linux), and makes substantial design changes to Empire module templates. I'll try to maintain ObfuscatedEmpire with the latest Empire commits until/if a merge is possible.
+Long term, I'm hoping this obfuscation could be merged into Empire itself, but there could be a few obstacles to that since it requires using server-side PowerShell on Linux, which is still in **alpha** state (and technically unsupported on Kali Linux), and makes substantial design changes to Empire module templates. I'll try to maintain ObfuscatedEmpire with the latest Empire commits until/if a merge is possible.
 
 I would love to hear what people think about all of the stuff mentioned in this post. Feel free to leave a comment on this post or message me on twitter [@cobbr_io](https://twitter.com/cobbr_io) to communicate directly.
 
 Grab the ObfuscatedEmpire code from [the github page](https://github.com/cobbr/ObfuscatedEmpire).
 
 # Credits
-* [@danielbohannon](https://twitter.com/danielbohannon) For the awesome Invoke-Obfuscation tool and for helping me understand how all of this Powershell logging/AMSI stuff works.
+* [@danielbohannon](https://twitter.com/danielbohannon) For the awesome Invoke-Obfuscation tool and for helping me understand how all of this PowerShell logging/AMSI stuff works.
 * Everyone who has worked on the [Empire](https://github.com/EmpireProject/Empire) project.
-* The Microsoft Powershell team for the awesome Powershell logging capabilities, as well as making Powershell cross-platform. ObfuscatedEmpire wouldn't work without it.
+* The Microsoft PowerShell team for the awesome PowerShell logging capabilities, as well as making PowerShell cross-platform. ObfuscatedEmpire wouldn't work without it.
 
 ## Additional Resources
-More on Powershell logging:
+More on PowerShell logging:
 * [https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/)
 * [https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html](https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html)
 * [https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf](https://www.fireeye.com/content/dam/fireeye-www/global/en/solutions/pdfs/wp-lazanciyan-investigating-powershell-attacks.pdf)
