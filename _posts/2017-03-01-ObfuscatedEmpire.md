@@ -127,7 +127,7 @@ I would love to hear what people think about all of the stuff mentioned in this 
 Grab the ObfuscatedEmpire code from [the github page](https://github.com/cobbr/ObfuscatedEmpire).
 
 # Credits
-* [@danielbohannon](https://twitter.com/danielbohannon) For the awesome Invoke-Obfuscation tool and for helping me understand how all of this PowerShell logging/AMSI stuff works.
+* [@danielhbohannon](https://twitter.com/danielhbohannon) For the awesome Invoke-Obfuscation tool and for helping me understand how all of this PowerShell logging/AMSI stuff works.
 * Everyone who has worked on the [Empire](https://github.com/EmpireProject/Empire) project.
 * The Microsoft PowerShell team for the awesome PowerShell logging capabilities, as well as making PowerShell cross-platform. ObfuscatedEmpire wouldn't work without it.
 * Nick Britton (@nerbies) for inspiring the idea and suggestions for this article.
