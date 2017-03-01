@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ObfuscatedEmpire - Use an obfuscated, in-memory PowerShell C2 channel to evade AV signatures"
-date: 2017-2-19 12:00:00 -0600
+date: 2017-3-01 10:00:00 -0600
 tags: ObfuscatedEmpire Invoke-Obfuscation Empire AMSI PowerShell
 ---
 [ObfuscatedEmpire](https://github.com/) is an integration of two fantastic projects, [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) and [Empire](https://github.com/EmpireProject/Empire). If you aren't already familiar with those projects, you really should go check them out first. But here's a quick summary for those who are unfamiliar:
@@ -130,7 +130,7 @@ Grab the ObfuscatedEmpire code from [the github page](https://github.com/cobbr/O
 * [@danielbohannon](https://twitter.com/danielbohannon) For the awesome Invoke-Obfuscation tool and for helping me understand how all of this PowerShell logging/AMSI stuff works.
 * Everyone who has worked on the [Empire](https://github.com/EmpireProject/Empire) project.
 * The Microsoft PowerShell team for the awesome PowerShell logging capabilities, as well as making PowerShell cross-platform. ObfuscatedEmpire wouldn't work without it.
-
+* Nick Britton (@nerbies) for inspiring the idea and suggestions for this article.
 
 ## Additional Resources
 More on PowerShell logging:
