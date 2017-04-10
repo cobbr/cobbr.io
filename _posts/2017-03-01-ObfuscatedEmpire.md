@@ -4,7 +4,7 @@ title: "ObfuscatedEmpire - Use an obfuscated, in-memory PowerShell C2 channel to
 date: 2017-3-01 10:00:00 -0600
 tags: ObfuscatedEmpire Invoke-Obfuscation Empire AMSI PowerShell
 ---
-[ObfuscatedEmpire](https://github.com/) is an integration of two fantastic projects, [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) and [Empire](https://github.com/EmpireProject/Empire). If you aren't already familiar with those projects, you really should go check them out first. But here's a quick summary for those who are unfamiliar:
+[ObfuscatedEmpire](https://github.com/cobbr/ObfuscatedEmpire) is an integration of two fantastic projects, [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) and [Empire](https://github.com/EmpireProject/Empire). If you aren't already familiar with those projects, you really should go check them out first. But here's a quick summary for those who are unfamiliar:
 * Empire is a PowerShell post-exploitation agent. It's a powerful tool for attackers as it allows for a C2 channel to be run completely in-memory, without any malicious code touching disk, rendering traditional AV techniques ineffective.
 * Invoke-Obfuscation is a PowerShell script obfuscator. As the use of in-memory PowerShell malware has grown, implementation of in-memory AV scanning of PowerShell scripts has begun. Invoke-Obfuscation challenges all assumptions these in-memory PowerShell AV signatures have been making.
 
