@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bypass for PowerShell ScriptBlock Warning Logging of Suspicious Commands"
-date: 2017-5-02 09:00:00 -0600
+date: 2017-5-02 00:00:01 -0600
 tags: PowerShell
 ---
 
