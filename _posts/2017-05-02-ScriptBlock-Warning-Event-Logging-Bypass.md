@@ -17,7 +17,7 @@ PS> [ScriptBlock]."GetFiel`d"('signatures','N'+'onPublic,Static').SetValue($null
 
 This bypass may look familiar to you. It was inspired by Matt Graeber's tweetable, one-line AMSI bypass:
 
-{% twitter https://twitter.com/mattifestation/status/735261176745988096 %}
+![AMSI Bypass]({{site.baseurl}}/assets/images/graeber-amsi-bypass.png)
 
 I figured his method of using reflection to interact with the AmsiUtils class and alter nonpublic, static fields could probably be applied in other nefarious ways. I've been down in a rabbithole of PowerShell obfuscation and ScriptBlock logging lately, and just recently discovered that PowerShell 5.0+ automatically logs "suspicious" commands commonly associated with malware to ScriptBlock logs with a **warning level** (even if ScriptBlock logging is not enabled!). This is a great source of evidence for defenders, so naturally I wanted to try to break it!
 
