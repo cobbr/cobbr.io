@@ -158,6 +158,8 @@ Property  :
 
 And the final character count is 126 characters, so it is tweetable :)
 
+![Warning Log Bypass]({{site.baseurl}}/assets/images/warning-log-bypass-tweet.png)
+
 ## One Last Problem To Solve
 
 So this all works great when using it at an interactive PowerShell prompt, the problem comes when trying to script it. My first thought was to throw this into Empire to test how effective it was. There are 2 main problems: One, if the one-liner bypass gets bundled with other code by PowerShell into a larger ScriptBlock, that code following the bypass could be found to be "suspicious" prior to the bypass taking effect. This is because the code is checked for suspicious strings prior to execution of the *entire* ScriptBlock *including the bypass*. Two, Empire creates a new PowerShell runspace for each module that is executed. When new runspaces are created, the runspace gets a newly initialized `signatures` variable that will catch strings in the given module. A way to combat this would be to prepend all modules with the bypass, but then again we run into problem #1 with code getting bundled with the bypass into a single ScriptBlock and still being scanned prior to execution of the bypass.
