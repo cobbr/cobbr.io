@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PowerShell ScriptBlock Logging Bypass"
-date: 2017-5-02 00:00:01 -0600
+date: 2017-5-17 00:00:01 -0600
 tags: PowerShell
 ---
 
