@@ -25,4 +25,4 @@ If (read: When) you do run into obfuscation problems, remember that you do have 
 
 `Token\Comment\1,Token\Command\2,Token\Argument\2,Token\Member\4,Token\Variable\1,Token\Type\2`
 
-And with the move to Empire 2.0 and all the bug fixes, ObfuscatedEmpire is finally in a state that is ready to be merged upstream to Empire! The pull request has been opened and can be tracked [here](). It's a large change and will almost certainly take awhile to get merged in, but I am excited that Empire users will start to be introduced to the idea of using obfuscation in their workflow.
+And with the move to Empire 2.0 and all the bug fixes, ObfuscatedEmpire is finally in a state that is ready to be merged upstream to Empire! The pull request has been opened and can be tracked [here](https://github.com/EmpireProject/Empire/pull/585). It's a large change and will almost certainly take awhile to get merged in, but I am excited that Empire users will start to be introduced to the idea of using obfuscation in their workflow.
