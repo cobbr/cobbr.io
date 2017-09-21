@@ -4,6 +4,9 @@ title: "Trying to Detect PowerShell Obfuscation Through Character Frequency"
 date: 2017-4-18 09:00:00 -0600
 tags: ObfuscatedEmpire Invoke-ObfuscationDetection Invoke-Obfuscation AMSI PowerShell
 ---
+**Update: At this point, this post is mostly outdated. For PowerShell obfuscation detection you should be using [Revoke-Obfuscation](https://github.com/danielhbohannon/Revoke-Obfuscation) written by [Daniel Bohannon](https://twitter.com/danielhbohannon) and [Lee Holmes](https://twitter.com/Lee_Holmes).**
+
+
 [In my last post]({{site.baseurl}}/ObfuscatedEmpire.html) describing the usage of ObfuscatedEmpire for automating PowerShell obfuscation within a C2 channel, I mentioned a technique others have proposed for detecting malicious PowerShell scripts. The technique, originally suggested by Lee Holmes (of Microsoft), is to search for signs of obfuscation itself.
 
 For example, a token obfuscation trick utilized by [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) is to insert apostrophes into function names and other tokens. `Invoke-Empire` might become ```iN`v`OK`e-`eM`p`IR`e```. These are functionally equivalent within PowerShell, but will break AV signatures matching the literal string "Invoke-Empire". But should we really expect that half of the characters in a script consist of apostrophe characters? Lee wrote about these types of detection methods as early as November 2015 [here](https://www.leeholmes.com/blog/2015/11/13/detecting-obfuscated-powershell/). In this post, however, I'll mainly be referencing his more recent article that was written partially as a reaction to Invoke-Obfuscation, which you can read [here](https://www.leeholmes.com/blog/2016/10/22/more-detecting-obfuscated-powershell/). He provides us with some really awesome PowerShell functions that actually begin to implement these obfuscation detection techniques, `Measure-CharacterFrequency` and `Measure-VectorSimilarity`.
