@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PSAmsi - Minimizing Obfuscation to Maximize Stealth"
-date: 2017-11-13 10:00:00 -0600
+date: 2017-11-14 6:45:00 -0600
 tags: PSAmsi PowerShell
 ---
 
@@ -9,7 +9,7 @@ I recently released [PSAmsi](https://github.com/cobbr/PSAmsi), a tool for auditi
 
 We already had a tool that was capable of *almost* always defeating PowerShell-based AMSI signatures in [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) written by [Daniel Bohannon](https://twitter.com/danielhbohannon) (I say "*almost*", I've never seen a case that Invoke-Obfuscation *does not* defeat all of the AMSI signatures within a script, but theoretically it could happen).
 
-The problem becomes when defenders become smart to all of this obfuscation nonsense and instead of matching only on simple string signatures, implements some sort of obfuscation detection. [I've written a little on obfuscation detection in the past](({{site.baseurl}}/ObfuscationDetection.html)) and Daniel and [Lee Holmes](https://twitter.com/Lee_Holmes) have put out some [much more thorough research since then](https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/revoke-obfuscation-report.pdf).
+The problem becomes when defenders become smart to all of this obfuscation nonsense and instead of matching only on simple string signatures, implement some sort of obfuscation detection. [I've written a little on obfuscation detection in the past]({{site.baseurl}}/ObfuscationDetection.html) and Daniel and [Lee Holmes](https://twitter.com/Lee_Holmes) have put out some [much more thorough research since then](https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/revoke-obfuscation-report.pdf).
 
 The basic premise of obfuscation detection is that a heavily obfuscated script is immediately recognized as unusual by a human eye. For example, using Invoke-Obfuscation might result in the following output:
 
