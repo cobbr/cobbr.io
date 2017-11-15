@@ -218,8 +218,8 @@ As a defender, once you pass Step 6 - Detection over Prevention, you will be abl
 
 The following are useful references that I may or may not have mentioned earlier in this post:
 
-* AMSI MSDN Reference - https://msdn.microsoft.com/en-us/library/windows/desktop/dn889588(v=vs.85).aspx
-* ASR Rules - https://docs.microsoft.com/en-us/windows/threat-protection/windows-defender-exploit-guard/enable-attack-surface-reduction
-* PowerShell - The Blue Team - https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/
-* Revoke-Obfuscation Whitepaper - https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/revoke-obfuscation-report.pdf
-* PowerShell Logging - https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html
+* [AMSI MSDN Reference](https://msdn.microsoft.com/en-us/library/windows/desktop/dn889588(v=vs.85).aspx)
+* [ASR Rules](https://docs.microsoft.com/en-us/windows/threat-protection/windows-defender-exploit-guard/enable-attack-surface-reduction)
+* [PowerShell - The Blue Team](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/)
+* [Revoke-Obfuscation Whitepaper](https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/revoke-obfuscation-report.pdf)
+* [PowerShell Logging](https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html)
