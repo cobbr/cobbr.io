@@ -192,7 +192,11 @@ We have arrived at the customary defensive mitigations portion present in any go
 
 To start off, the good news for defenders is that PSAmsi generates a **ton** of AV alerts while it is searching for AMSI signatures. However, if attackers are utilizing PSAmsi correctly, they won't be executing it on any of your systems, and will only be executing payloads *generated* by PSAmsi.
 
-Luckily, defenders have a wealth of options for protecting themselves from PowerShell threats. The following are a list of defensive steps that an organization can take to defend themselves against PowerShell threats, including payloads generated with PSAmsi. These are meant to be listed (roughly) in order of suggested implementation:
+
+What I really mean when I say that PSAmsi minimizes obfuscation to maximize stealth, is that it maximizes stealth *for PowerShell payloads*. Luckily, defenders have a wealth of options for detecting and protecting themselves from PowerShell threats.
+
+
+The following are a list of defensive steps that an organization can take to defend themselves against PowerShell threats, including payloads generated with PSAmsi. These are meant to be listed (roughly) in order of suggested implementation:
 
 1. **Deploy PowerShell v5** (and remove PowerShell v2) - If you still have systems with PowerShell v2 installed, this is step one. Without PowerShell v5, defenders have 0 visibility into PowerShell scripts being executed in their environment. Attackers will not need to obfuscate their payloads to escape detection, much less need to minimize their obfuscation.
 
