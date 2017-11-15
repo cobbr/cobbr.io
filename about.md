@@ -11,7 +11,7 @@ I intend for this blog to be a platform to document and share the things I am wo
 Projects I am currently working on:
 
 * [PSAmsi](https://github.com/cobbr/PSAmsi) - A tool for auditing and defeating AMSI signatures.
-* [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) - I help maintain [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) written by [Daniel Bohannon](https://twitter.com/danielhbohannon) (meaning I've written two lines of code for it).
+* [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) - I help to maintain [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), a PowerShell obfuscator, written by [Daniel Bohannon](https://twitter.com/danielhbohannon).
 
 Projects I have worked on in the past:
 
