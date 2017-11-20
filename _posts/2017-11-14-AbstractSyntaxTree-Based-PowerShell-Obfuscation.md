@@ -35,28 +35,28 @@ For example, PSToken obfuscation for our example script would occur, somewhat, l
 We begin iterating over the PSTokens, the first one being a CommandArgument token. We know we can insert tick characters into CommandArgument tokens, so we do that:
 
 ```
-Type            Content				        ObfuscatedContent
+Type            Content                     ObfuscatedContent
 ----            -------                     -----------------
-CommandArgument Test-AstObfuscation   ->	TE`s`t-AS`TOBFus`CAtIon
+CommandArgument Test-AstObfuscation   ->    TE`s`t-AS`TOBFus`CAtIon
 ```
 
 Next we have a `ParameterSetName` Member token, where we can't insert ticks. So we just randomly case the characters:
 
 ```
-Type            Content				        ObfuscatedContent
+Type            Content                     ObfuscatedContent
 ----            -------                     -----------------
-CommandArgument Test-AstObfuscation   ->	TE`s`t-AS`TOBFus`CAtIon
-Member          ParameterSetName      ->	ParamEterseTNAME
+CommandArgument Test-AstObfuscation   ->    TE`s`t-AS`TOBFus`CAtIon
+Member          ParameterSetName      ->    ParamEterseTNAME
 ```
 
 Next we have a String token, where we have a few options, but we'll just add ticks here:
 
 ```
-Type            Content				        ObfuscatedContent
+Type            Content                     ObfuscatedContent
 ----            -------                     -----------------
-CommandArgument Test-AstObfuscation   ->	TE`s`t-AS`TOBFus`CAtIon
-Member          ParameterSetName      ->	ParamEterseTNAME
-String          Set1                  ->	“S`et1”
+CommandArgument Test-AstObfuscation   ->    TE`s`t-AS`TOBFus`CAtIon
+Member          ParameterSetName      ->    ParamEterseTNAME
+String          Set1                  ->    “S`et1”
 ```
 
 This iterative process continues throughout the entire script
