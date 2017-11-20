@@ -97,7 +97,7 @@ The entire tree is large and doesn't display nicely, so let's start by looking a
 
 ![AST Obfuscation 0]({{site.baseurl}}/assets/images/tree-obfuscation-0.png)
 
-This is an AttributeAst, just a line of code that applies various attributes to a parameter inside of a larger ParamBlockAst. The four children nodes of this Ast are all the attributes that are being applied to the parameter. One of these attributes is the "Mandatory" attribute, which indicates that a parameter is required to use the function. The Mandatory attribute is boolean, it can be either True or False. It turns out that we can specify True boolean attributes just by name (i.e. "Mandatory) or by actually assigning the True value (i.e. "Mandatory = $True"). Currently, we are specifying it only by name, so let's switch it:
+This is an `AttributeAst`, just a line of code that applies various attributes to a parameter inside of a larger `ParamBlockAst`. The four children nodes of this `Ast` are all the attributes that are being applied to the parameter. One of these attributes is the "Mandatory" attribute, which indicates that a parameter is required to use the function. The Mandatory attribute is boolean, it can be either True or False. It turns out that we can specify True boolean attributes just by name (i.e. "Mandatory) or by actually assigning the True value (i.e. "Mandatory = $True"). Currently, we are specifying it only by name, so let's switch it:
 
 ![AST Obfuscation 1]({{site.baseurl}}/assets/images/tree-obfuscation-1.png)
 
@@ -109,17 +109,17 @@ Finally, all of these children are just unrelated attributes being applied to a 
 
 ![AST Obfuscation 3]({{site.baseurl}}/assets/images/tree-obfuscation-3.png)
 
-You can start to see how the context of an AST's location within the tree offers us additional obfuscation options. The knowledge that these Attributes are all children of a single AttributeAst applied to the same parameter allows us to reorder them inside the AttributeAst.
+You can start to see how the context of an AST's location within the tree offers us additional obfuscation options. The knowledge that these Attributes are all children of a single `AttributeAst` applied to the same parameter allows us to reorder them inside the `AttributeAst`.
 
 Now, let's zoom outwards a bit into the larger tree:
 
 ![AST Obfuscation 4]({{site.baseurl}}/assets/images/tree-obfuscation-4.png)
 
-That is the original tree, which includes the previously discussed AttributeAst as a child. So let's first apply the obfuscation we've already done on that AttributeAst:
+That is the original tree, which includes the previously discussed `AttributeAst` as a child. So let's first apply the obfuscation we've already done on that `AttributeAst`:
 
 ![AST Obfuscation 5]({{site.baseurl}}/assets/images/tree-obfuscation-5.png)
 
-Now let's move on to look at the next AttributeAst that specifies several "Alias" names. This AttributeAst specifies alternate names, or "Aliases", that can be used instead of the default 'ParameterOne' parameter name. These aliases can of course be listed in any order, so we can switch those around:
+Now let's move on to look at the next `AttributeAst` that specifies several "Alias" names. This `AttributeAst` specifies alternate names, or "Aliases", that can be used instead of the default 'ParameterOne' parameter name. These aliases can of course be listed in any order, so we can switch those around:
 
 ![AST Obfuscation 6]({{site.baseurl}}/assets/images/tree-obfuscation-6.png)
 
@@ -127,15 +127,15 @@ We zoom outwards again into the larger tree:
 
 ![AST Obfuscation 7]({{site.baseurl}}/assets/images/tree-obfuscation-7.png)
 
-We now see that there are two parameters in the larger ParamBlockAst. So far we have focused on the first ParameterOne parameter. So again we apply the obfuscation we have already found for this first parameter:
+We now see that there are two parameters in the larger `ParamBlockAst`. So far we have focused on the first ParameterOne parameter. So again we apply the obfuscation we have already found for this first parameter:
 
 ![AST Obfuscation 8]({{site.baseurl}}/assets/images/tree-obfuscation-8.png)
 
-Of course, we can do very similar things to the second parameter, ParameterTwo. We can rearrange the Attributes in the AttributeAst of ParameterTwo, the same way we did with the first parameter:
+Of course, we can do very similar things to the second parameter, ParameterTwo. We can rearrange the Attributes in the `AttributeAst` of ParameterTwo, the same way we did with the first parameter:
 
 ![AST Obfuscation 9]({{site.baseurl}}/assets/images/tree-obfuscation-9.png)
 
-But the parameters themselves can be reordered! So we switch the order of the entire ParameterAsts within the ParamBlockAst:
+But the parameters themselves can be reordered! So we switch the order of the entire `ParameterAst`s within the `ParamBlockAst`:
 
 ![AST Obfuscation 10]({{site.baseurl}}/assets/images/tree-obfuscation-10.png)
 
@@ -143,19 +143,19 @@ And now zoom out into the larger tree one last time:
 
 ![AST Obfuscation 11]({{site.baseurl}}/assets/images/tree-obfuscation-11.png)
 
-This ScriptBlockAst contains the full ParamBlockAst we have been looking at so far, as well as three other NamedBockAst children. We first apply all of the obfuscation we have found for the ParamBlockAst:
+This `ScriptBlockAst` contains the full `ParamBlockAst` we have been looking at so far, as well as three other `NamedBockAst` children. We first apply all of the obfuscation we have found for the `ParamBlockAst`:
 
 ![AST Obfuscation 12]({{site.baseurl}}/assets/images/tree-obfuscation-12.png)
 
-Now we focus on the first NamedBlockAst child, the one containing the "Begin" block. All we are doing is assigning a variable called "Start" to a random value between minimum and maximum values. It turns out that there are other ways to assign a value to a variable than using the standard "=" operator. We can instead use the `Set-Variable` cmdlet. Additionally, named parameters (such as the `-Minimum` and `-Maximum` paramters to `Get-Random`) can be specified in any order we like. So we apply both of those techniques, using `Set-Variale` and switching the `-Minimum` and `-Maximum` parameters:
+Now we focus on the first `NamedBlockAst` child, the one containing the "Begin" block. All we are doing is assigning a variable called "Start" to a random value between minimum and maximum values. It turns out that there are other ways to assign a value to a variable than using the standard "=" operator. We can instead use the `Set-Variable` cmdlet. Additionally, named parameters (such as the `-Minimum` and `-Maximum` paramters to `Get-Random`) can be specified in any order we like. So we apply both of those techniques, using `Set-Variable` and switching the `-Minimum` and `-Maximum` parameters:
 
 ![AST Obfuscation 13]({{site.baseurl}}/assets/images/tree-obfuscation-13.png)
 
-Moving on to the second NamedBlockAst child, the "Process" block, we can do something very similar using the `Set-Variable` to assign the result of an expression to the "Result" variable. Additionally, a numeric expression exists as a part of the expression being assigned to the "Result" variabble. It turns out that some numeric expressions, such as the addition operator, are "commutative" meaning they can also be reordered! So we apply both of those techniques:
+Moving on to the second `NamedBlockAst` child, the "Process" block, we can do something very similar using the `Set-Variable` to assign the result of an expression to the "Result" variable. Additionally, a numeric expression exists as a part of the expression being assigned to the "Result" variabble. It turns out that some numeric expressions, such as the addition operator, are "commutative" meaning they can also be reordered! So we apply both of those techniques:
 
 ![AST Obfuscation 14]({{site.baseurl}}/assets/images/tree-obfuscation-14.png)
 
-Finally, the Begin, Process, and End NamedBlockAsts can be reordered within the function's ScriptBlockAst:
+Finally, the Begin, Process, and End `NamedBlockAst`s can be reordered within the function's `ScriptBlockAst`:
 
 ![AST Obfuscation 15]({{site.baseurl}}/assets/images/tree-obfuscation-15.png)
 
