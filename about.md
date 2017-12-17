@@ -20,7 +20,9 @@ Projects I have worked on in the past:
 
 * [ObfuscatedEmpire](https://github.com/cobbr/ObfuscatedEmpire) - An integration of [Empire](https://github.com/EmpireProject/Empire) and [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), for automating obfuscation within a PowerShell C2 channel. Introductory blog post and full explanation available [here]({{site.baseurl}}/ObfuscatedEmpire.html). **This has been merged upstream to [Empire](https://github.com/EmpireProject/Empire), so just use that!**
 
-### Presentations:
+### Presentations
+
+Presentations I have given at conferences:
 
 * **BSides DFW 2017 - "PSAmsi: Offensive PowerShell Interaction with the AMSI"** - A deeper dive into how the Anti-Malware Scan Interface (AMSI) works, how to enumerate AMSI signatures using PSAmsi, and how to simultaneously defeat AMSI signatures and obfuscation detection by minimizing obfuscation using PSAmsi. Also introduced the concept of AbstractSyntaxTree-based PowerShell obfuscation as a stealthier form of obfuscation. Included demos of [PSAmsi](https://github.com/cobbr/PSAmsi), a tool for auditing and defeating AMSI signatures. [Slides available here](https://github.com/cobbr/slides/blob/master/BSides/DFW/PSAmsi%20-%20Offensive%20PowerShell%20Interaction%20with%20the%20AMSI.pdf)
 
