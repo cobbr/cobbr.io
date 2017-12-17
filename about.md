@@ -18,7 +18,7 @@ Projects I am currently working on:
 
 Projects I have worked on in the past:
 
-* [ObfuscatedEmpire](https://github.com/cobbr/ObfuscatedEmpire) - An integration of [Empire](https://github.com/EmpireProject/Empire) and [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), for automating obfuscation within a PowerShell C2 channel. Introductory blog post and full explanation available [here]({{site.baseurl}}/ObfuscatedEmpire.html). **This has been merge upstream to [Empire](https://github.com/EmpireProject/Empire), so just use that!**
+* [ObfuscatedEmpire](https://github.com/cobbr/ObfuscatedEmpire) - An integration of [Empire](https://github.com/EmpireProject/Empire) and [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), for automating obfuscation within a PowerShell C2 channel. Introductory blog post and full explanation available [here]({{site.baseurl}}/ObfuscatedEmpire.html). **This has been merged upstream to [Empire](https://github.com/EmpireProject/Empire), so just use that!**
 
 ### Presentations:
 
