@@ -27,7 +27,7 @@ InsecurePowerShell is a fork of the [open-source PowerShell Core v6.0.0](https:/
 
 ## Usage
 
-InsecurePowerShell is built exactly the same way as PowerShell Core, and can be used exactly the same way. The [release](https://github.com/cobbr/InsecurePowerShell/releases/) of InsecurePowerShell includes a binary named `pwsh.exe`. This can be used exactly the same way as the standard PowerShell Core. It can be used interactively or non-interactively with the `-Command` or `-EncodedCommand` parameters. For example:
+InsecurePowerShell is built exactly the same way as PowerShell Core and can be used exactly the same way. The [release](https://github.com/cobbr/InsecurePowerShell/releases/) of InsecurePowerShell includes a binary named `pwsh.exe`. This can be used exactly the same way as the standard PowerShell Core. It can be used interactively or non-interactively with the `-Command` or `-EncodedCommand` parameters. For example:
 
 ```
 PS C:\InsecurePowerShell\> .\pwsh.exe
@@ -53,6 +53,8 @@ ScriptBlock ID: 72983606-2c4d-4266-808c-280c718550c4
 Path:
 ```
 
+### InsecurePowerShellHost
+
 In addition to this near `pwsh.exe` clone, I've created a .NET Core application called [InsecurePowerShellHost](https://github.com/cobbr/InsecurePowerShellHost). Just like it sounds, InsecurePowerShellHost is an application that hosts the modified `System.Management.Automation.dll` created with InsecurePowerShell. InsecurePowerShellHost can only be used non-interactively with the `--Command` and `--EncodedCommand` parameters. The main benefit of using InsecurePowerShellHost over InsecurePowerShell is that it is a bit lighterweight than the full PowerShell Core build included in InsecurePowerShell.
 
 An example of InsecurePowerShellHost usage:
@@ -74,19 +76,19 @@ With that in mind, let's talk about some of the practical pros and cons of using
 
 ### Pros
 
-* **PowerShell without the security** - The biggest benefit by far, and the real motivation for InsecurePowerShell is to be able to execute PowerShell without the security features: no AMSI, no ScriptBlock Logging, no Module Logging, no Transcription Logging, etc.
+* **PowerShell Without the Security** - The biggest benefit by far, and the real motivation for InsecurePowerShell is to be able to execute PowerShell without the security features: no AMSI, no ScriptBlock Logging, no Module Logging, no Transcription Logging, etc.
 * **Compatibility** - Being a .NET Core application, we can execute InsecurePowerShell on Windows 7 SP1, Windows 8.1, Windows 10, Windows Server 2008 R2 SP1, Windows Server 2012, and Windows Server 2016.
 * **Features of PowerShell Core v6.0** - We get all of the functionality of PowerShell Core v6.0. As red teamers, we are often limited to the functionality of PowerShell v2.0 in order to avoid the newer PowerShell security features. No longer!
 
 ### Cons
 
 * **Touching Disk** - As a .NET Core application, not only do we have to drop a binary to disk, but we also need to drop all the supporting DLLs for .NET Core as well. These will mostly be Microsoft-signed binaries, however, we would always prefer to touch disk the least amount possible. InsecurePowerShell really does **not** conform to the "living off the land" principle at all.
-* **Application WhiteListing** - InsecurePowerShell is not going to work with a strong Application WhiteListing solution. We lose one of the big original benefits of `powershell.exe`.
-* **PowerShell Core** - InsecurePowerShell is a fork of PowerShell Core, **not** Windows PowerShell. There is not feature parity between Windows PowerShell and PowerShell Core. This might be the biggest practical concern with using InsecurePowerShell, pre-existing PowerShell tooling may or may not work correctly in PowerShell Core.
+* **Application Whitelisting** - InsecurePowerShell is not going to work with a strong Application Whitelisting solution. We lose one of the big original benefits of `powershell.exe`.
+* **PowerShell Core != Windows PowerShell** - InsecurePowerShell is a fork of PowerShell Core, **not** Windows PowerShell. There is not feature parity between Windows PowerShell and PowerShell Core. This might be the biggest practical concern with using InsecurePowerShell, pre-existing PowerShell tooling may or may not work correctly in PowerShell Core.
 
 ## Defense
 
-InsecurePowerShell/InsecurePowerShellHost are just a binaries/DLLs that need to be dropped to disk. Defense could be as easy as blacklisting the modified System.Management.Automation.dll. And you might as well blacklist older versions of System.Management.Automation.dll, such as v2.0, while you are it!
+InsecurePowerShell/InsecurePowerShellHost are just binaries/DLLs that need to be dropped to disk. Defense could be as easy as blacklisting the modified System.Management.Automation.dll. And you might as well blacklist older versions of System.Management.Automation.dll, such as v2.0, while you are it!
 
 Blacklisting is a quick, simple fix, but the real answer is an Application Whitelisting solution. Defeating a blacklist could be as simple as recompiling InsecurePowerShell/InsecurePowerShellHost.
 
@@ -94,7 +96,7 @@ Blacklisting is a quick, simple fix, but the real answer is an Application White
 
 InsecurePowershell is a simple concept that I really don't plan on actively maintaining. However, there are a couple of interesting items that could enhance InsecurePowerShell that I may revisit in the future:
 
-* **Dynamically Load Assemblies** - 99% of the time I spent working on InsecurePowershell was spent trying to create a single binary that dynamically loaded the modified System.Management.Automation.dll and the .NET Core DLLs so that InsecurePowershell could be distributed as a single binary file, however this turned out to be more difficult than I anticipated. So for now, InsecurePowerShell exists as a single ZIP archive that must be extracted out to many files. However, I may revisit this in the future.
+* **Dynamically Load Assemblies** - 99% of the time I spent working on InsecurePowershell was spent trying to create a single binary that dynamically loads the modified System.Management.Automation.dll and the .NET Core DLLs so that InsecurePowershell could be distributed as a single binary file, however this turned out to be more difficult than I anticipated. So for now, InsecurePowerShell exists as a single ZIP archive that must be extracted out to many files. However, I may revisit this in the future.
 * **PowerShell Core Agent** - It might be convenient to have a full PowerShell C2 agent that is compatible with PowerShell Core. The lack of feature parity between WindowsPowerShell and PowerShell Core will probably cause most pre-existing PowerShell C2 agents to fail.
 
 ---
