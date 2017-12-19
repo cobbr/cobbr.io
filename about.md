@@ -12,8 +12,9 @@ I intend for this blog to be a platform to document and share the things I am wo
 
 Projects I am currently working on:
 
-* **InsecurePowerShell** - [InsecurePowerShell](https://github.com/cobbr/InsecurePowershell) is a fork of PowerShell Core v6.0 with some key security features removed.
+
 * **PSAmsi** - [PSAmsi](https://github.com/cobbr/PSAmsi) is a tool for auditing and defeating AMSI signatures.
+* **InsecurePowerShell** - [InsecurePowerShell](https://github.com/cobbr/InsecurePowerShell) is a fork of PowerShell Core v6.0 with some key security features removed. [InsecurePowerShellHost](https://github.com/cobbr/InsecurePowerShellHost) is a .NET Core application that hosts the modified System.Management.Automation.dll built in InsecurePowerShell.
 * **Invoke-Obfuscation** - I help to maintain [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), a PowerShell obfuscator, written by [Daniel Bohannon](https://twitter.com/danielhbohannon).
 
 Projects I have worked on in the past:
