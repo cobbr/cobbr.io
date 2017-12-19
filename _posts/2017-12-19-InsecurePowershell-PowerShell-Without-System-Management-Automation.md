@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "InsecurePowerShell - PowerShell without System.Management.Automation.dll"
-date: 2017-12-18 10:00:00 -0600
+date: 2017-12-19 10:00:00 -0600
 tags: PowerShell InsecurePowerShell
 ---
 
@@ -17,7 +17,9 @@ Of course, one of the benefits of using PowerShell in the first place is that `p
 
 ### PowerShell Without System.Management.Automation.dll
 
-[InsecurePowerShell](https://github.com/cobbr/InsecurePowerShell) takes this one step further. If we are going to create a new "PowerShell host" binary and drop it to disk anyway, why not host a **modified version** of the System.Management.Automation.dll? As (hopefully) everyone knows by now, PowerShell has much improved security features, particularly in v5, including: ScriptBlock Logging, Module Logging, Transcription Logging, AMSI introspection, Constrained Language Mode, etc. All of these security features are implemented in the System.Management.Automation.dll, so how about we host a more fun version of the System.Management.Automation.dll that has all the features we want from the newest versions of PowerShell but none of the protections? This is what InsecurePowerShell aims to do. So what I really mean by PowerShell "without" System.Management.Automation.dll is PowerShell without the **default** System.Management.Automation.dll.
+[InsecurePowerShell](https://github.com/cobbr/InsecurePowerShell) takes this one step further. If we are going to create a new "PowerShell host" binary and drop it to disk anyway, why not host a **modified version** of the System.Management.Automation.dll? As (hopefully) everyone knows by now, PowerShell has much improved security features, particularly in v5, including: ScriptBlock Logging, Module Logging, Transcription Logging, AMSI introspection, Constrained Language Mode, etc. All of these security features are implemented in the System.Management.Automation.dll.
+
+So how about we host a more fun version of the System.Management.Automation.dll that has all the features we want from the newest versions of PowerShell but none of the protections? This is what InsecurePowerShell aims to do. So what I really mean by PowerShell "without" System.Management.Automation.dll is PowerShell without the **default** System.Management.Automation.dll.
 
 InsecurePowerShell is a fork of the [open-source PowerShell Core v6.0.0](https://github.com/PowerShell/PowerShell) with just a few modifications. InsecurePowerShell removes the following security features from PowerShell:
 * AMSI - InsecurePowerShell does not submit any PowerShell code to the AMSI, even when there is an actively listening AntiMalware Provider.
@@ -55,7 +57,7 @@ Path:
 
 ### InsecurePowerShellHost
 
-In addition to this near `pwsh.exe` clone, I've created a .NET Core application called [InsecurePowerShellHost](https://github.com/cobbr/InsecurePowerShellHost). Just like it sounds, InsecurePowerShellHost is an application that hosts the modified `System.Management.Automation.dll` created with InsecurePowerShell. InsecurePowerShellHost can only be used non-interactively with the `--Command` and `--EncodedCommand` parameters. The main benefit of using InsecurePowerShellHost over InsecurePowerShell is that it is a bit lighterweight than the full PowerShell Core build included in InsecurePowerShell.
+In addition to this near `pwsh.exe` clone, I've created a .NET Core application called [InsecurePowerShellHost](https://github.com/cobbr/InsecurePowerShellHost). Just like it sounds, InsecurePowerShellHost is an application that hosts the modified `System.Management.Automation.dll` created in InsecurePowerShell. InsecurePowerShellHost can only be used non-interactively with the `--Command` and `--EncodedCommand` parameters. The main benefit of using InsecurePowerShellHost over InsecurePowerShell is that it is a bit lighterweight than the full PowerShell Core build included in InsecurePowerShell.
 
 An example of InsecurePowerShellHost usage:
 
