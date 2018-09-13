@@ -1,10 +1,11 @@
 ---
 layout: page
 title: About
+sidebar_link: true
 permalink: /about/
 ---
 
-I work as a pentester and consultant at [Protiviti](https://www.protiviti.com/).
+I work as a red teamer and Operator at [SpecterOps](https://specterops.io/). I enjoy security-related software development in my spare time, and tend to write about topics related to offensive PowerShell, .NET, and Windows security in general.
 
 I intend for this blog to be a platform to document and share the things I am working on or interest me. I don't claim to be an expert.
 
@@ -12,9 +13,11 @@ I intend for this blog to be a platform to document and share the things I am wo
 
 Projects I am currently working on:
 
-
+* **SharpSploit** - [SharpSploit](https://github.com/cobbr/SharpSploit) is a .NET post-exploitation library written in C# that aims to highlight the attack surface of .NET and make the use of offensive .NET easier for red teamers.
 * **PSAmsi** - [PSAmsi](https://github.com/cobbr/PSAmsi) is a tool for auditing and defeating AMSI signatures.
-* **InsecurePowerShell** - [InsecurePowerShell](https://github.com/cobbr/InsecurePowerShell) is a fork of PowerShell Core v6.0 with some key security features removed. [InsecurePowerShellHost](https://github.com/cobbr/InsecurePowerShellHost) is a .NET Core application that hosts the modified System.Management.Automation.dll built in InsecurePowerShell.
+
+Projects I help to maintain:
+
 * **Invoke-Obfuscation** - I help to maintain [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation), a PowerShell obfuscator, written by [Daniel Bohannon](https://twitter.com/danielhbohannon).
 
 Projects I have worked on in the past:
@@ -30,3 +33,4 @@ Presentations I have given at conferences:
 * **DerbyCon 2017** - "PSAmsi: Offensive PowerShell Interaction with the AMSI" - A deeper dive into how the Anti-Malware Scan Interface (AMSI) works, how to enumerate AMSI signatures using PSAmsi, and how to simultaneously defeat AMSI signatures and obfuscation detection by minimizing obfuscation using PSAmsi. Also demonstrated how to use PSAmsi generated payloads within Empire. Included demos of [PSAmsi](https://github.com/cobbr/PSAmsi), a tool for auditing and defeating AMSI signatures. [Slides available here](https://github.com/cobbr/slides/blob/master/DerbyCon/PSAmsi%20-%20Offensive%20PowerShell%20Interaction%20with%20the%20AMSI.pdf), [Recording available here](https://www.youtube.com/watch?v=rEFyalXfQWk)
 
 * **BSides Austin 2017** - "Obfuscating The Empire" - An introduction to PowerShell logging capabilities, the Anti-Malware Scan Interface (AMSI) introduced in Windows 10, and how to use obfuscation to evade AV signatures. Included demos of [ObfuscatedEmpire](https://github.com/cobbr/ObfuscatedEmpire), an integration of [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) and [Empire](https://github.com/EmpireProject/Empire). [Slides available here](https://github.com/cobbr/slides/blob/master/BSides/Austin/Obfuscating%20The%20Empire.pdf).
+

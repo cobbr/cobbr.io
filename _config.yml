@@ -1,18 +1,41 @@
-# Site settings
-title: cobbr.io
-# email: none
-# description: Ryan Cobb
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cobbr.io"
-twitter_username: cobbr_io
-github_username:  cobbr
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Setup
+title:            cobbr.io
+tagline:          'cobbr.io'
+description:      'Blog'
+url:              https://cobbr.io
+baseurl:          ''
+                  # the optional subpath of your site, e.g. "/blog"
+                  # NB: This applies to all pages in your Jekyll site.
+                  # If you want to move just the blog index pages but keep
+                  # other pages at root, see the paginate_path and
+                  # sidebar_blog_link below.
 permalink: /:title.html
 
-# Build settings
-markdown: kramdown
-gems:
-  - jekyll-feed
-exclude:
-  - Gemfile
-  - Gemfile.lock
+author:
+  name:           'Ryan Cobb'
+  url:            https://twitter.com/cobbr_io
 
+paginate:         10
+# paginate_path:    '/page:num'
+                    # Or '/blog/page:num' if you want to move your index pages
+
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+
+# Custom vars
+version:            3.7.1
+sidebar_home_link:  true
+# sidebar_blog_link:  '/blog'   # By default, your home page is your blog
+                                # page. If you change your paginate_path,
+                                # set this to the root of the paginate_path
+                                # to enable a separate blog link.
+github:
+  repo:             https://github.com/cobbr
+twitter:
+  url:              https://twitter.com/cobbr_io
