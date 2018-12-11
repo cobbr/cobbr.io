@@ -47,7 +47,7 @@ For simple one-liners, `SharpShell` will add the return statement for you:
 
 ![SharpShell Example 5]({{site.baseurl}}/assets/images/sharpshell-example-5.png)
 
-`SharpShell` can be configured with custom source code, references, and embedded resources in just the same way as SharpGen by editting YAML configuration files. Reference the [SharpGen blog post for configuration details]({{site.baseurl}}/SharpGen.html).
+`SharpShell` can be configured with custom source code, references, and embedded resources in just the same way as SharpGen by editing YAML configuration files. Reference the [SharpGen blog post for configuration details]({{site.baseurl}}/SharpGen.html).
 
 Finally, `SharpShell` will print out the compilation errors in the event that you experience a typo (I'm sure this will never happen):
 
