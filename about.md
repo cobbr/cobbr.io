@@ -13,6 +13,7 @@ I intend for this blog to be a platform to document and share the things I am wo
 
 Projects I am currently working on:
 
+* **Covenant** - [Covenant](https://github.com/cobbr/Covenant) is a .NET command and control framework that aims to highlight the attack surface of .NET, make the use of offensive .NET tradecraft easier, and serve as a collaborative command and control platform for red teamers.
 * **SharpSploit** - [SharpSploit](https://github.com/cobbr/SharpSploit) is a .NET post-exploitation library written in C# that aims to highlight the attack surface of .NET and make the use of offensive .NET easier for red teamers.
 * **PSAmsi** - [PSAmsi](https://github.com/cobbr/PSAmsi) is a tool for auditing and defeating AMSI signatures.
 
