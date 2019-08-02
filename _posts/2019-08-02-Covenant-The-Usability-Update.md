@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Covenant: The Usability Update"
-date: 2019-07-31 07:00:00 -0600
+date: 2019-08-02 07:00:00 -0600
 tags: Covenant GUI Web .NET dotnet C#
 ---
 
