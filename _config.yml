@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            cobbr.io
 tagline:          'cobbr.io'
-description:      'Blog'
+description:      ''
 url:              https://cobbr.io
 baseurl:          ''
                   # the optional subpath of your site, e.g. "/blog"
